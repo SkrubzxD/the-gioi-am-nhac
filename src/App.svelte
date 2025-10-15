@@ -1,13 +1,8 @@
 <script>
-  import Cube from "./lib/Cube.svelte";
-  import Counter from "./lib/Counter.svelte";
+  import './app.css';
+  import Canvas from './Canvas.svelte';
+  
 </script>
 
-<main>
-  <Cube />
-  <Counter />
-</main>
+<Canvas />
 
-<style>
-
-</style>

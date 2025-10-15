@@ -11,6 +11,6 @@ Basically will be an online model preview
 - Access 2D playing feature using the computer keyboard (notes will have keys displayed on screen & animations when it plays e.g a shadow)
 
 ***an idea is to be able to export the midi to capitalise***
-
 ## Techstack
-- We are using Three.js & Svelte due to Svelte lightweight and 3D
+- Frontend : Svelte, ThreeJS
+- Backend : Firebase
