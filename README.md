@@ -12,5 +12,5 @@ Basically will be an online model preview
 
 ***an idea is to be able to export the midi to capitalise***
 ## Techstack
-- Frontend : Svelte, ThreeJS
-- Backend : Firebase
+- Frontend : ThreeJS
+- Backend : Python Flask
