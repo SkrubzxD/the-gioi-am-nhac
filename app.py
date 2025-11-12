@@ -1,10 +1,14 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+import os
 
-"code to active: . ./gp/bin/activate"
+""
+"code to active: . ./venv_name/bin/activate"
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/hphenex/Documents/group_project/the-gioi-am-nhac/example.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'example.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Avoids a warning
 db = SQLAlchemy(app)
 
