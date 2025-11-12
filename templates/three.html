@@ -6,6 +6,8 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.m
 
     let container, scene, camera, renderer, controls;
 
+    const modelname = "{{ modelname }}";
+
     container = document.getElementById('3d-model-container');
 
     scene = new THREE.Scene();
@@ -27,7 +29,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.m
     scene.add(light);
 
     const loader = new GLTFLoader();
-    loader.load('/models/guzheng-1k.glb', (gltf) => {
+    loader.load(`/models/${modelname}`, (gltf) => {
       scene.add(gltf.scene);
     });
 
