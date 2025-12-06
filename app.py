@@ -1,8 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 from flask_sqlalchemy import SQLAlchemy
 import os
-
-""
+"https://www.vnam.edu.vn/Categories.aspx?lang=&CatID=12&SubID=47"
+"https://docs.sqlalchemy.org/en/20/tutorial/orm_data_manipulation.html"
 "code to active: . ./venv_name/bin/activate"
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -17,6 +17,14 @@ class STUDENT(db.Model):
     NAME = db.Column(db.String(25), nullable=False )
     CLASS = db.Column(db.String(25))
     Score = db.Column(db.Integer)
+
+class Thesis(db.Model):
+    ID = db.Column(db.String(25), primary_key = True, nullable=False)
+    Author = db.Column(db.String(25),nullable = False)
+    Category = db.Column(db.String(25), nullable = False)
+    Supervisor = db.Column(db.String(25), nullable = False)
+    Name = db.Column(db.String(255),nullable = False)
+    File_name = db.Column(db.String(25), nullable = False)
 
 @app.route('/')
 def main_home():
@@ -42,7 +50,7 @@ def to_gallery():
 def to_infographic():
     return render_template('infographic.html')
 
-@app.route('/gallery/library')
+@app.route('/library/')
 def to_library():
     return render_template('library.html')
 
@@ -68,6 +76,15 @@ def test_db():
     profiles = db.session.query(STUDENT).all()
     return render_template('testdb.html',profiles=profiles)
 
+@app.route('/library/search', methods=["POST"])
+def search_thesis():
+    name = request.form.get("Search")
+    return result(name)
+
+@app.route('/library/result')
+def result(name):
+    result = db.session.execute(db.select(Thesis).where((Thesis.Name+Thesis.ID+Thesis.Author+Thesis.Supervisor+Thesis.Category).like(f'%{name}%'))).scalars()
+    return render_template('thesis_search_result.html',result = result)
 
 
 
