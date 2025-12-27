@@ -60,6 +60,24 @@
   </script>
   </head>
   <body>
+    {% include '3d_model_viewer/sidebar.html' %}
+
+    <script>
+    function toggleNav() {
+        const sidebar = document.getElementById('mySidebar');
+        if (sidebar.style.width === '250px') {
+            sidebar.style.width = '0';
+        } else {
+            sidebar.style.width = '250px';
+        }
+    }
+    
+    function loadModel(modelName) {
+        // Navigate to the 3D model page
+        const path = '/music_world/3dpreview/' + modelName.replace('.glb', '');
+        window.location.href = path;
+    }
+    </script>
 
     <div style="width:100%;height:100%;display:flex">
     <div style="width: 70%; height:100% ; display:inline" id="3d-model-container" ></div>
