@@ -87,20 +87,13 @@ def to_library():
 def to_music_library_alias():
     return render_template('music_library/library.html')
 
-@app.route('/gallery/development')
-def to_development():
-    # development page missing; render home as fallback
-    return render_template('home.html')
-
 @app.route('/music_world/')
 def to_musicworld():
-    # musicworld template moved; show library view instead
-    return render_template('music_library/library.html')
+    return render_template('music_world.html')
 
 @app.route('/music_world/3dpreview/')
 def to_3dpreview():
     return render_template('3d_model_viewer/3dpreview.html')
-
 @app.route('/music_world/3dpreview/<string:inname>')
 def render_3d(inname):
     filename= inname+ ".glb"
