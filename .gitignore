@@ -1,0 +1,14 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+venv/
+env/
+
+# Large folders you mentioned
+node_modules/
+
+# Environment variables (Sensitive info)
+.env
+.DS_Store

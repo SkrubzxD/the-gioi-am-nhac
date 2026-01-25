@@ -6,11 +6,14 @@ import os
 from utils.nav import get_nav_items
 from utils.quiz_db import get_random_questions, get_question_by_id
 
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'example.db')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'your-secret-key-here'  # For flash messages
+database_url = os.environ.get('POSTGRES_URL') or os.environ.get('DATABASE_URL')
+if database_url and database_url.startswith("postgres://"):
+    database_url = database_url.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url or 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
 @app.context_processor
