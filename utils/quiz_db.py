@@ -9,7 +9,7 @@ def get_random_questions(db, limit=3):
     The import of the `question` model is done inside the function to
     avoid circular imports with `app`.
     """
-    from app import question
+    from models import question
 
     quest = db.session.execute(
         db.select(question).order_by(func.random()).limit(limit)
@@ -34,7 +34,7 @@ def get_random_questions(db, limit=3):
 
 def get_question_by_id(db, q_id):
     """Return the `question` model instance for the given ID or None."""
-    from app import question
+    from models import question
 
     return db.session.execute(
         db.select(question).where(question.ID == q_id)

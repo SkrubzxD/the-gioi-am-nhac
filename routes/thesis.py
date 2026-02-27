@@ -31,6 +31,6 @@ def serve_thesis_pdf(thesisname):
 
     filename = f"{os.path.basename(thesisname)}.pdf"
 
-    directory = os.path.join(current_app.root_path, 'templates')
+    directory = os.path.join(current_app.root_path, 'templates', 'thesis_archive')
 
     return send_from_directory(directory, filename, as_attachment=False)

@@ -33,9 +33,8 @@ def submit_quiz():
                 'question': actual_question.QName, 'your_answer': user_answer,
                 'correct_answer': actual_question.CorrectA, 'is_correct': is_correct
             })
-        return render_template('quiz/quiz_result.html', score=score, total=total_questions, summary=results_summary)
-    
-    @quiz_bp.route('/quiz/learning')
-    def to_learning():
-        return render_template('quiz/learning.html')
-    
+    return render_template('quiz/quiz_result.html', score=score, total=total_questions, summary=results_summary)
+
+@quiz_bp.route('/quiz/learning')
+def to_learning():
+    return render_template('quiz/learning.html')

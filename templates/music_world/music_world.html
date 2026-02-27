@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" class="placeholder">
+<head>
+<script type="importmap">
+{
+  "imports": {
+    "three": "/static/three.module.js",
+    "orbit": "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js",
+    "gtlfloader": "https://unpkg.com/three/examples/jsm/loaders/GLTFLoader.js"
+  }
+}
+</script>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>The Gioi Am Nhac</title>
+  </head>
+  <body>
+    {% include 'header.html' %}
+  <script>
+    function loadModel(modelName) {
+        const path = '/music_world/' + modelName.replace('.glb', '');
+        window.location.href = path;
+    }
+  </script>
+
+    <div style="width:100%; display:flex; justify-content: center; margin-top: 20px;">
+        <div style="width: 80%; height: 600px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;" id="3d-model-container"></div>
+    </div>
+
+    <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'orbit';
+    import { GLTFLoader } from 'gtlfloader';
+
+    let container, scene, camera, renderer, controls;
+
+    const modelname = "{{ modelname }}";
+
+    container = document.getElementById('3d-model-container');
+    const w = container.clientWidth;
+    const h = container.clientHeight || 600; // Fallback height
+
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0f0f0f);
+
+    camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
+    camera.position.set(0, 1, 30);
+
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(w, h);
+    container.appendChild(renderer.domElement);
+   
+
+    controls = new OrbitControls(camera, renderer.domElement);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    directionalLight.position.set(1, 1, 1);
+    scene.add(directionalLight);
+
+    const light = new THREE.PointLight(0xffffff, 0.8);
+    light.position.set(3, 3, 3);
+    scene.add(light);
+
+    if (modelname) {
+        const loader = new GLTFLoader();
+        // Ensure path matches your static/resources structure
+        loader.load(`/static/instruments_models/${modelname}`, (gltf) => {
+            const model = gltf.scene;
+            // Center model
+            const box = new THREE.Box3().setFromObject(model);
+            const center = box.getCenter(new THREE.Vector3());
+            model.position.sub(center);
+            
+            scene.add(model);
+        });
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+  </body>
+</html>
