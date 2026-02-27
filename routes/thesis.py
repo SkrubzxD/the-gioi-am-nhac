@@ -26,11 +26,11 @@ def search_thesis():
     return render_template('thesis_archive/thesis_search_result.html', result=result)
 
 @thesis_bp.route('/thesis/<thesisname>')
-def serve_thesis_pdf(thesisname):
-    filename = f"{os.path.basename(thesisname)}.pdf"
-    directory = os.path.join(current_app.root_path, 'templates')
-    return send_from_directory(directory, filename, as_attachment=False)
 
-@thesis_bp.route('/thesis_archive/thesis')
-def thesis_archive_alias():
-    return render_template('thesis_archive/thesis.html')
+def serve_thesis_pdf(thesisname):
+
+    filename = f"{os.path.basename(thesisname)}.pdf"
+
+    directory = os.path.join(current_app.root_path, 'templates')
+
+    return send_from_directory(directory, filename, as_attachment=False)

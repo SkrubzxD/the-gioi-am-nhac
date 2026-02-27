@@ -33,22 +33,9 @@ def submit_quiz():
                 'question': actual_question.QName, 'your_answer': user_answer,
                 'correct_answer': actual_question.CorrectA, 'is_correct': is_correct
             })
-    return render_template('quiz/quiz_result.html', score=score, total=total_questions, summary=results_summary)
-
-# Aliases
-@quiz_bp.route('/learning')
-@quiz_bp.route('/quiz/learning')
-def to_learning():
-    return render_template('quiz/learning.html')
-
-@quiz_bp.route('/quiz/quest')
-def quiz_quest_alias():
-    return render_template('quiz/quest.html')
-
-@quiz_bp.route('/quiz/quiz')
-def quiz_quiz_alias():
-    return render_template('quiz/quiz.html')
-
-@quiz_bp.route('/quiz/testdb')
-def quiz_testdb_alias():
-    return render_template('quiz/testdb.html')
+        return render_template('quiz/quiz_result.html', score=score, total=total_questions, summary=results_summary)
+    
+    @quiz_bp.route('/quiz/learning')
+    def to_learning():
+        return render_template('quiz/learning.html')
+    

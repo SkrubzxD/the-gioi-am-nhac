@@ -113,7 +113,3 @@ def delete_instrument(instrument_id):
 def serve_audio(filename):
     audio_dir = os.path.join(current_app.root_path, 'static', 'audio')
     return send_from_directory(audio_dir, filename)
-
-@library_bp.route('/music_library/library')
-def to_music_library_alias():
-    return redirect(url_for('library.to_library'))

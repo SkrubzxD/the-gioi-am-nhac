@@ -1,7 +1,6 @@
 from flask import Flask
 import os
-from models import db
-from routes import register_routes
+from models import db, question
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
@@ -12,6 +11,8 @@ if database_url and database_url.startswith("postgres://"):
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url or 'sqlite:///test.db'
 
 db.init_app(app)
+
+from routes import register_routes
 register_routes(app)
 
 if __name__ == '__main__':
