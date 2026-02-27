@@ -1,0 +1,22 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://user:pass@db:5432/music_db
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: music_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d music_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5

@@ -1,0 +1,13 @@
+[project]
+name = "the-gioi-am-nhac"
+version = "0.1.0"
+description = "Traditional Vietnamese Music Project"
+requires-python = ">=3.12"
+dependencies = [
+    "flask>=3.0.3",
+    "werkzeug>=3.0.0",
+    "uvicorn>=0.24.0",
+    "sqlalchemy>=2.0.20",
+    "flask-sqlalchemy>=3.1.1",
+    "psycopg2-binary>=2.9.11",
+]
