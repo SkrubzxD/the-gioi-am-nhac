@@ -1,9 +1,14 @@
 <header>
-    <h1>The Gioi Am Nhac</h1>
-
-    <nav id="main-nav">
-        {% for item in nav_items %}
+    <div
+        style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 32px;">🪘</span>
+            <h1>Thế Giới Âm Nhạc</h1>
+        </div>
+        <nav id="main-nav">
+            {% for item in nav_items %}
             <a class="nav-link" href="{{ item.href }}">{{ item.text }}</a>
-        {% endfor %}
-    </nav>
+            {% endfor %}
+        </nav>
+    </div>
 </header>

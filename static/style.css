@@ -1,36 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 @import url("https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css");
 
-.element1 {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0; /* slate-200 */
-  border-left: 5px solid #0284c7; /* sky-600 */
-  border-radius: 6px;
-  padding: 20px;
-  margin: 15px 0;
-  text-align: center;
-  height: auto;
-  min-height: 200px;
-  width: auto;
-  font-size : 32px;
-  color: #1e293b; /* slate-800 */
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-}
-.element2 {
-  background-color: #f8fafc; /* slate-50 */
-  border: 1px solid #e2e8f0; /* slate-200 */
-  border-radius: 6px;
-  padding: 20px;
-  margin: 15px 0;
-  text-align: center;
-  height: auto;
-  min-height: 200px;
-  width: auto;
-  font-size : 18px;
-  color: #475569; /* slate-600 */
-}
-.placeholder {
-  background-color: #e2e8f0; /* slate-200 */
-  color: #94a3b8; /* slate-400 */
+:root {
+  /* Vietnamese Cultural Theme Colors */
+  --cultural-red: #9b1c1c;      /* Deep traditional red */
+  --cultural-red-hover: #7b1616;
+  --cultural-red-light: #fef2f2;
+  
+  --bronze-gold: #d4af37;       /* Bronze drum / traditional gold */
+  --bronze-gold-hover: #b5952f;
+  --bronze-gold-light: #fdfaf0;
+  
+  --bg-ivory: #faf8f5;          /* Warm off-white */
+  --bg-paper: #ffffff;
+  
+  --text-primary: #2d2d2d;      /* Very dark grey almost black */
+  --text-secondary: #5c5c5c;
+  --text-muted: #8b8b8b;
+  
+  --border-color: #eae1d7;      /* Warm border */
+  
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Be Vietnam Pro', sans-serif;
+  
+  /* Shadows & Layout */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(155, 28, 28, 0.08); /* slight red tint in shadow */
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
 }
 
 * {
@@ -38,204 +38,195 @@
 }
 
 body {
-  background-color: #f1f5f9; /* slate-100 */
-  color: #1e293b; /* slate-800 */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-ivory);
+  color: var(--text-primary);
+  font-family: var(--font-body);
   margin: 0;
   padding: 0;
+  line-height: 1.6;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--cultural-red);
+  margin-top: 0;
+}
+
+/* Header & Navigation */
 header {
-  background-color: #ffffff;
-  color: #1e293b;
-  padding: 10px 24px;
-  border-bottom: 1px solid #e2e8f0; /* slate-200 */
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  background-color: var(--bg-paper);
+  color: var(--text-primary);
+  padding: 12px 32px;
+  border-bottom: 2px solid var(--bronze-gold);
+  box-shadow: var(--shadow-md);
   position: sticky;
   top: 0;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
 }
 
 header h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
-  padding: 12px 0;
-  color: #0284c7; /* sky-600 */
-  letter-spacing: -0.025em;
+  padding: 8px 0;
+  color: var(--cultural-red);
+  letter-spacing: -0.01em;
 }
 
 #main-nav {
-  margin: 10px 0 0 0;
+  margin: 8px 0 0 0;
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 16px;
   align-items: center;
   flex-wrap: wrap;
   padding: 0;
 }
 
-.nav-home {
-  margin-right: 20px;
-}
-
-.nav-home a {
-  font-weight: 600;
-  font-size: 15px;
-  color: #475569; /* slate-600 */
-  text-decoration: none;
-  padding: 8px 12px;
-  display: inline-block;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-}
-
-.nav-home a:hover {
-  background-color: #e0f2fe; /* sky-100 */
-  color: #0369a1; /* sky-700 */
-}
-
-.nav-group {
-  position: relative;
-  margin: 0;
-  border: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.nav-group-title {
-  cursor: pointer;
-  padding: 8px 12px;
-  font-weight: 600;
-  font-size: 15px;
-  color: #475569; /* slate-600 */
-  background-color: transparent;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  user-select: none;
-  margin-right: 5px;
-  white-space: nowrap;
-}
-
-.nav-group-title:hover {
-  color: #0284c7; /* sky-600 */
-  background-color: #f1f5f9; /* slate-100 */
-}
-
-.nav-group-items {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  padding: 5px 0;
-  margin-top: 2px;
-  display: none;
-  flex-direction: column;
-  gap: 0;
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0; /* slate-200 */
-  border-radius: 8px;
-  min-width: 220px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  z-index: 200;
-  overflow: hidden;
-}
-
-.nav-group-items[style*="display: block"],
-.nav-group-items[style*="display:block"] {
-  display: flex !important;
-}
-
 .nav-link {
-  color: #475569; /* slate-600 */
+  color: var(--text-secondary);
   text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
   font-size: 15px;
   font-weight: 600;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   display: inline-block;
   white-space: nowrap;
 }
 
-.nav-link:hover {
-  background-color: #e0f2fe; /* sky-100 */
-  color: #0369a1; /* sky-700 */
+.nav-link:hover, .nav-link.active {
+  background-color: var(--cultural-red-light);
+  color: var(--cultural-red);
 }
 
-/* Main content area */
+/* Main Content Area */
 main#app {
-  padding: 30px 24px;
+  padding: 40px 24px;
   min-height: calc(100vh - 150px);
   max-width: 1200px;
   margin: 0 auto;
 }
 
 #content {
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 8px; /* rounded-lg */
+  padding: 40px;
+  background-color: var(--bg-paper);
+  border-radius: var(--radius-lg);
   min-height: 400px;
-  color: #1e293b; /* slate-800 */
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  border: 1px solid #e2e8f0; /* slate-200 */
-  position: relative; /* Ensure absolute children (like maps) are contained */
+  color: var(--text-primary);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+/* Home Hero Customization */
+.hero-section {
+  text-align: center;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, var(--bg-paper) 0%, var(--bg-ivory) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 40px;
+}
+
+.hero-section h2 {
+  font-size: 42px;
+  margin-bottom: 16px;
+  color: var(--cultural-red);
+}
+
+.hero-section p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Reusable Elements */
+.btn-primary {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--cultural-red);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.btn-primary:hover {
+  background-color: var(--cultural-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(155, 28, 28, 0.2);
+}
+
+/* Input Fields */
+input[type="text"] {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+  background-color: var(--bg-paper);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--bronze-gold);
+  box-shadow: 0 0 0 3px var(--bronze-gold-light);
+}
+
+/* Thesis Archive Styles */
+.thesis-container { max-width: 800px; margin: 20px auto; }
+.search-bar { display: flex; gap: 10px; margin-bottom: 20px; }
+.search-bar input { flex: 1; }
+.search-bar button { @extend .btn-primary; } /* Fallback if preprocessor used, implemented fully below */
+.search-bar button {
+  padding: 12px 24px; background: var(--cultural-red); color: #fff; border: none; border-radius: var(--radius-sm); cursor: pointer; font-weight: 600; transition: all 0.3s;
+}
+.search-bar button:hover { background: var(--cultural-red-hover); transform: translateY(-1px); }
+#results-area { margin-top: 20px; }
+
+/* Thesis Search Result Styles */
+.thesis-card { border: 1px solid var(--border-color); padding: 20px; margin-bottom: 16px; border-radius: var(--radius-md); background: var(--bg-paper); box-shadow: var(--shadow-sm); transition: transform 0.2s; }
+.thesis-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.thesis-card h3 { margin: 0 0 10px 0; font-family: var(--font-heading); }
+.thesis-card h3 a { text-decoration: none; color: var(--text-primary); font-weight: 600; }
+.thesis-card h3 a:hover { color: var(--cultural-red); }
+.thesis-info { color: var(--text-muted); font-size: 0.95em; margin-bottom: 8px; }
+.thesis-label { font-weight: 600; color: var(--bronze-gold); }
+
+/* Map Styles */
+#map {
+  width: 100%;
+  height: 600px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
 }
 
 /* Responsive navbar for smaller screens */
 @media (max-width: 768px) {
   header {
-    padding: 10px 16px;
+    padding: 12px 16px;
   }
   
   header h1 {
-    font-size: 20px;
+    font-size: 22px;
   }
   
   #main-nav {
-    gap: 10px;
-  }
-  
-  .nav-home {
-    margin-right: 10px;
-  }
-  
-  .nav-group-title {
-    padding: 8px 10px;
-    font-size: 14px;
-    margin-right: 0;
+    gap: 8px;
   }
   
   .nav-link {
     font-size: 14px;
-    padding: 10px 16px;
+    padding: 8px 12px;
   }
-  
-  .nav-group-items {
-    min-width: 180px;
-  }
-}
-
-/* Thesis Archive Styles */
-.thesis-container { max-width: 800px; margin: 20px auto; font-family: sans-serif; }
-.search-bar { display: flex; gap: 10px; margin-bottom: 20px; }
-.search-bar input { flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; outline: none; transition: all 0.2s; }
-.search-bar input:focus { border-color: #0284c7; box-shadow: 0 0 0 3px #e0f2fe; }
-.search-bar button { padding: 10px 20px; background: #0284c7; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background 0.2s; }
-.search-bar button:hover { background: #0369a1; }
-#results-area { margin-top: 20px; }
-
-/* Thesis Search Result Styles */
-.thesis-card { border: 1px solid #e2e8f0; padding: 16px; margin-bottom: 16px; border-radius: 8px; background: #fff; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); }
-.thesis-card h3 { margin: 0 0 10px 0; }
-.thesis-card h3 a { text-decoration: none; color: #1e293b; font-weight: 600; }
-.thesis-card h3 a:hover { color: #0284c7; }
-.thesis-info { color: #64748b; font-size: 0.95em; margin-bottom: 4px; }
-.thesis-label { font-weight: 600; color: #475569; }
-
-#map {
-  width: 100%;
-  height: 600px;
-  border-radius: 8px;
 }

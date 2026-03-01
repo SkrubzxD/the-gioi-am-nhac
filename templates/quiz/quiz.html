@@ -1,11 +1,27 @@
 <!DOCTYPE html>
+<html lang="vi">
+
 <head>
+    <meta charset="utf-8">
+    <title>Quiz</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
     {% include 'header.html' %}
-    <a href="/quiz/question">
-   <button>START QUIZ</button>
-</a>
-
+    <main id="app" style="display: flex; align-items: center; justify-content: center; min-height: 60vh;">
+        <div
+            style="text-align: center; background: var(--bg-paper); padding: 60px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 1px solid var(--border-color); max-width: 600px;">
+            <div style="font-size: 64px; margin-bottom: 20px;">🎲</div>
+            <h1 style="color: var(--cultural-red); font-family: var(--font-heading); margin-bottom: 16px;">Thử Thách
+                Kiến Thức / Quiz</h1>
+            <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 18px; line-height: 1.6;">
+                Kiểm tra kiến thức của bạn về nền âm nhạc truyền thống Việt Nam. <br> Are you ready?
+            </p>
+            <a href="/quiz/question" class="btn-primary"
+                style="font-size: 20px; padding: 16px 40px; text-decoration: none;">BẮT ĐẦU / START</a>
+        </div>
+    </main>
 </body>
+
+</html>

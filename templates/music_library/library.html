@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Music Library</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -9,190 +10,238 @@
             margin: 20px auto;
             padding: 20px;
         }
-        
+
         .search-bar {
             margin-bottom: 30px;
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
-        
+
         .search-bar input {
             flex: 1;
-            padding: 12px 20px;
+            padding: 14px 20px;
             font-size: 16px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background-color: var(--bg-paper);
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
         }
-        
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--bronze-gold);
+            box-shadow: 0 0 0 3px var(--bronze-gold-light);
+        }
+
         .search-bar button {
-            padding: 12px 24px;
-            background: #0d9488;
+            padding: 14px 28px;
+            background: var(--cultural-red);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: var(--radius-md);
             cursor: pointer;
             font-size: 16px;
+            font-weight: 600;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
         }
-        
+
         .search-bar button:hover {
-            background: #0f766e;
+            background: var(--cultural-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(155, 28, 28, 0.2);
         }
-        
+
         .add-button {
             display: inline-block;
-            padding: 10px 20px;
-            background: #2dd4bf;
-            color: white;
+            padding: 12px 24px;
+            background: var(--bg-paper);
+            color: var(--cultural-red);
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
+            transition: all 0.3s ease;
         }
-        
+
+        .add-button:hover {
+            background: var(--cultural-red-light);
+            border-color: var(--cultural-red);
+        }
+
         .instrument-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 24px;
             margin-top: 20px;
         }
-        
+
         .instrument-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: var(--bg-paper);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
             cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
-        
+
         .instrument-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--bronze-gold);
         }
-        
+
         .instrument-image {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+            border: 1px solid var(--border-color);
         }
-        
+
         .instrument-name-vn {
-            font-size: 20px;
-            font-weight: 600;
-            color: #0f766e;
-            margin-bottom: 5px;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--cultural-red);
+            font-family: var(--font-heading);
+            margin-bottom: 4px;
         }
-        
+
         .instrument-name-en {
             font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-style: italic;
+            flex-grow: 1;
         }
-        
+
+        .instrument-badges {
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
         .instrument-category {
             display: inline-block;
-            background: #e0f2f1;
-            color: #0d9488;
-            padding: 4px 12px;
-            border-radius: 12px;
+            background: var(--cultural-red-light);
+            color: var(--cultural-red);
+            padding: 6px 14px;
+            border-radius: 100px;
             font-size: 12px;
-            margin-right: 5px;
+            font-weight: 600;
         }
-        
+
         .instrument-region {
             display: inline-block;
-            background: #fef3c7;
-            color: #d97706;
-            padding: 4px 12px;
-            border-radius: 12px;
+            background: var(--bronze-gold-light);
+            color: #b58000;
+            padding: 6px 14px;
+            border-radius: 100px;
             font-size: 12px;
+            font-weight: 600;
         }
-        
+
         .flash-messages {
             max-width: 1200px;
             margin: 20px auto;
             padding: 0 20px;
         }
-        
+
         .flash {
-            padding: 12px 20px;
-            border-radius: 6px;
-            margin-bottom: 10px;
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+            font-weight: 500;
         }
-        
+
         .flash.success {
-            background: #d1fae5;
-            color: #065f46;
-            border: 1px solid #10b981;
+            background: #fdfaf0;
+            color: #b58000;
+            border: 1px solid #d4af37;
         }
-        
+
         .flash.error {
-            background: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #ef4444;
+            background: var(--cultural-red-light);
+            color: var(--cultural-red);
+            border: 1px solid var(--cultural-red);
         }
     </style>
 </head>
+
 <body>
     {% include 'header.html' %}
-    
+
     <div class="flash-messages">
         {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="flash {{ category }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
     </div>
-    
+
     <div class="library-container">
-        <h1 style="color: #0f766e; margin-bottom: 10px;">Vietnamese Music Library</h1>
-        <p style="color: #666; margin-bottom: 30px;">Explore traditional Vietnamese musical instruments</p>
-        
+        <h1 style="color: var(--cultural-red); margin-bottom: 10px; font-size: 36px;">Thư Viện Nhạc Cụ Việt Nam</h1>
+        <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 18px;">Khám phá các nhạc cụ truyền thống
+            của dân tộc / Explore traditional Vietnamese musical instruments</p>
+
         <div class="search-bar">
-            <form action="/library/search" method="POST" style="display: flex; flex: 1; gap: 10px;">
-                <input type="text" name="Search" placeholder="Search instruments by name, category, or region...">
-                <button type="submit">🔍 Search</button>
+            <form action="/library/search" method="POST" style="display: flex; flex: 1; gap: 12px;">
+                <input type="text" name="Search"
+                    placeholder="Tìm kiếm nhạc cụ theo tên, phân loại, vùng miền... / Search instruments...">
+                <button type="submit">Tìm Kiếm</button>
             </form>
         </div>
-        
-        <a href="/library/add" class="add-button">➕ Add New Instrument</a>
-        
+
+        <a href="/library/add" class="add-button">Thêm Nhạc Cụ Mới</a>
+
         <div class="instrument-grid">
             {% for instrument in instruments %}
             <a href="/library/instrument/{{ instrument.ID }}" style="text-decoration: none; color: inherit;">
                 <div class="instrument-card">
                     {% if instrument.Image_Main %}
-                        <img src="{{ instrument.Image_Main }}" alt="{{ instrument.Vietnamese_Name }}" class="instrument-image">
+                    <img src="{{ instrument.Image_Main }}" alt="{{ instrument.Vietnamese_Name }}"
+                        class="instrument-image">
                     {% else %}
-                        <div class="instrument-image" style="background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">
-                            🎵
-                        </div>
+                    <div class="instrument-image"
+                        style="background: linear-gradient(135deg, var(--bronze-gold) 0%, var(--bg-ivory) 100%); display: flex; align-items: center; justify-content: center; color: var(--cultural-red); font-size: 48px;">
+                        🪘
+                    </div>
                     {% endif %}
-                    
+
                     <div class="instrument-name-vn">{{ instrument.Vietnamese_Name }}</div>
                     <div class="instrument-name-en">{{ instrument.Name }}</div>
-                    
-                    <div style="margin-top: 10px;">
+
+                    <div class="instrument-badges">
                         {% if instrument.Category %}
-                            <span class="instrument-category">{{ instrument.Category }}</span>
+                        <span class="instrument-category">{{ instrument.Category }}</span>
                         {% endif %}
                         {% if instrument.Region %}
-                            <span class="instrument-region">{{ instrument.Region }}</span>
+                        <span class="instrument-region">{{ instrument.Region }}</span>
                         {% endif %}
                     </div>
                 </div>
             </a>
             {% else %}
-            <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #999;">
-                <div style="font-size: 48px; margin-bottom: 20px;">🎵</div>
-                <p>No instruments found in the library yet.</p>
-                <a href="/library/add" class="add-button" style="margin-top: 20px;">Add the first instrument</a>
+            <div
+                style="grid-column: 1 / -1; text-align: center; padding: 80px 20px; color: var(--text-muted); background: var(--bg-paper); border-radius: var(--radius-lg); border: 1px dashed var(--border-color);">
+                <div style="font-size: 64px; margin-bottom: 20px;">🪕</div>
+                <p style="font-size: 18px;">Chưa có nhạc cụ nào trong thư viện. / No instruments found in the library
+                    yet.</p>
+                <a href="/library/add" class="add-button" style="margin-top: 24px;">Thêm nhạc cụ đầu tiên</a>
             </div>
             {% endfor %}
         </div>
     </div>
 </body>
+
 </html>
