@@ -1,78 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Quiz Time</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        /* CSS to make it look nice and clean */
-        body {
-            font-family: sans-serif;
-            background-color: #f4f4f9;
-            padding: 20px;
+        .quiz-container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 40px auto;
         }
+
         .quiz-card {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: var(--bg-paper);
+            padding: 32px;
+            margin-bottom: 24px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
         }
+
         .question-text {
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            color: #2c3e50;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 22px;
+            margin-bottom: 24px;
+            color: var(--cultural-red);
+            line-height: 1.4;
         }
+
         .options-list {
             list-style-type: none;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
-        .options-list li {
-            margin-bottom: 10px;
-        }
-        /* Style the labels to look like clickable buttons */
+
         .option-label {
             display: block;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 16px 20px;
+            background-color: var(--bg-ivory);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
             cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+            font-size: 16px;
+            color: var(--text-primary);
         }
+
         .option-label:hover {
-            background-color: #e9ecef;
+            background-color: var(--bronze-gold-light);
+            border-color: var(--bronze-gold);
+            transform: translateX(4px);
         }
+
         /* Highlight selected option */
-        input[type="radio"]:checked + span {
-            font-weight: bold;
-            color: #007bff;
+        input[type="radio"] {
+            accent-color: var(--cultural-red);
+            margin-right: 12px;
+            transform: scale(1.2);
         }
+
+        input[type="radio"]:checked+span {
+            font-weight: 700;
+            color: var(--cultural-red);
+        }
+
         .submit-btn {
-            background-color: #28a745;
+            background-color: var(--cultural-red);
             color: white;
-            padding: 15px 30px;
+            padding: 16px 32px;
             border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
+            border-radius: var(--radius-md);
+            font-size: 18px;
+            font-weight: 700;
             cursor: pointer;
             display: block;
             width: 100%;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            font-family: var(--font-body);
         }
+
         .submit-btn:hover {
-            background-color: #218838;
+            background-color: var(--cultural-red-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
     </style>
 </head>
+
 <body>
     {% include 'header.html' %}
 
     <h1 style="text-align: center;">Daily Quiz</h1>
 
     <form action="/submit-quiz" method="POST">
-        
+
         {% for q in questions %}
         <div class="quiz-card">
             <div class="question-text">
@@ -86,7 +113,7 @@
                         <span>{{ q.ChoiceA }}</span>
                     </label>
                 </li>
-                
+
                 <li>
                     <label class="option-label">
                         <input type="radio" name="{{ q.ID }}" value="{{ q.ChoiceB }}">
@@ -115,4 +142,5 @@
     </form>
 
 </body>
+
 </html>

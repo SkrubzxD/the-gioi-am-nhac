@@ -1,37 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
+
 <head>
+    <meta charset="utf-8">
     <title>Quiz Results</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;}
-        .correct { color: green; font-weight: bold; }
-        .incorrect { color: red; font-weight: bold; }
-        .summary-card { border-bottom: 1px solid #ddd; padding: 10px 0; }
+        .quiz-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: var(--bg-paper);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .correct {
+            color: #2e7d32;
+            font-weight: 700;
+            background: #e8f5e9;
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid #c8e6c9;
+        }
+
+        .incorrect {
+            color: var(--cultural-red);
+            font-weight: 700;
+            background: var(--cultural-red-light);
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid #ffcdd2;
+        }
+
+        .summary-card {
+            border-bottom: 1px solid var(--border-color);
+            padding: 24px 0;
+        }
+
+        .summary-card:last-child {
+            border-bottom: none;
+        }
+
+        .score-display {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: var(--bronze-gold);
+            font-weight: 700;
+            font-family: var(--font-heading);
+        }
     </style>
 </head>
+
 <body>
     {% include 'header.html' %}
-    <h1>Quiz Complete!</h1>
-    <h2>Your Score: {{ score }} / {{ total }}</h2>
-    
-    <hr>
-    
-    {% for item in summary %}
-    <div class="summary-card">
-        <p><strong>Question:</strong> {{ item.question }}</p>
-        <p>Your Answer: 
-            <span class="{{ 'correct' if item.is_correct else 'incorrect' }}">
-                {{ item.your_answer }}
-            </span>
-        </p>
-        {% if not item.is_correct %}
-            <p style="color: grey;">Correct Answer: {{ item.correct_answer }}</p>
-        {% endif %}
-    </div>
-    {% endfor %}
-    
-    <br>
-    <a href="/quiz/question">Try Again</a>
+    <main id="app">
+        <div class="quiz-container">
+            <h1 style="text-align: center; color: var(--cultural-red); margin-bottom: 8px;">Kết Quả / Quiz Complete!
+            </h1>
+            <div class="score-display">Điểm của bạn / Your Score: {{ score }} / {{ total }}</div>
+
+            <hr style="border: none; border-top: 2px solid var(--border-color); margin-bottom: 20px;">
+
+            {% for item in summary %}
+            <div class="summary-card">
+                <p style="font-weight: 600; font-size: 18px; margin-bottom: 12px; color: var(--text-primary);">{{
+                    loop.index }}. {{ item.question }}</p>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <p style="margin: 0;">Lựa chọn của bạn / Your Answer:
+                        <span class="{{ 'correct' if item.is_correct else 'incorrect' }}">
+                            {{ item.your_answer }}
+                        </span>
+                    </p>
+                    {% if not item.is_correct %}
+                    <p style="color: var(--text-secondary); margin: 0; font-style: italic;">Đáp án đúng / Correct
+                        Answer: <span style="font-weight: 600;">{{ item.correct_answer }}</span></p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="/quiz/question" class="btn-primary">Thử lại / Try Again</a>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>

@@ -1,12 +1,33 @@
 <!DOCTYPE html>
+<html lang="vi">
 <head>
-    
-    <title>Home</title>
+    <meta charset="utf-8">
+    <title>Thế Giới Âm Nhạc - Vietnamese Traditional Music</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
     {% include 'header.html' %}
     <main id="app">
-        <div>Welcome — select a section from the navigation.</div>
+        <div class="hero-section">
+            <h2>Khám Phá Di Sản Âm Nhạc Việt Nam</h2>
+            <p>
+                Chào mừng bạn đến với <b>Thế Giới Âm Nhạc</b>. Đây là nền tảng lưu trữ kỹ thuật số tương tác với sứ mệnh bảo tồn và giới thiệu di sản âm nhạc truyền thống Việt Nam. 
+                Hãy chọn một danh mục từ thanh điều hướng để bắt đầu trải nghiệm.
+            </p>
+            <br>
+            <div style="display: flex; gap: 16px; justify-content: center;">
+                <a href="/library" class="btn-primary">Thư Viện Nhạc Cụ / Library</a>
+                <a href="/vnmap" class="btn-primary" style="background-color: var(--bronze-gold); color: var(--text-primary);">Bản Đồ 3D / 3D Map</a>
+            </div>
+        </div>
+        
+        <div id="content" style="text-align: center;">
+            <h3 style="margin-bottom: 20px;">Về Dự Án Này</h3>
+            <p style="color: var(--text-secondary); max-width: 800px; margin: 0 auto; text-align: justify; line-height: 1.8;">
+                This project presents the development of "Thế Giới Âm Nhạc" (The World of Music), a web platform dedicated to preserving and promoting Vietnamese cultural music traditions. Exploring traditional Vietnamese instruments, musical genres, and their cultural contexts.
+            </p>
+        </div>
     </main>
 </body>
+</html>
