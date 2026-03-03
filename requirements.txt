@@ -6,7 +6,7 @@ h11==0.16.0
 Flask==3.1.2
 Werkzeug==3.1.5
 flask-sqlalchemy==3.1.1
-psycopg2-binary==2.9.9
+psycopg2-binary==2.9.11
 blinker==1.9.0
 click==8.3.1
 itsdangerous==2.2.0
